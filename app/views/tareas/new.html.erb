@@ -1,0 +1,12 @@
+<%= form_for(@tarea) do |f|%>
+	<div class="form-group">
+		<label>Titulo</label>
+		<%= f.tex_field :titulo, class: "form-control" %>
+<!--    <input type="text" name="titulo" class="form-control">-->
+	</div>
+	<div>
+		<%= f.text_area :descripcion, class: "form-control" %>
+	</div>
+	<%= f.submit "Crear", class: "btn btn-success"%>
+	
+<% end %>
