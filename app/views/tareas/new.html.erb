@@ -1,11 +1,14 @@
+<% @tarea.errors.full_messages.each do |mensaje|%>
+	<p class="alert alert-danger"><%=mensaje%></p>
+<% end %>
 <%= form_for(@tarea) do |f|%>
 	<div class="form-group">
 		<label>Titulo</label>
-		<%= f.tex_field :titulo, class: "form-control" %>
+		<%= f.text_field :titulo, class: "form-control", :required => true %>
 <!--    <input type="text" name="titulo" class="form-control">-->
 	</div>
 	<div>
-		<%= f.text_area :descripcion, class: "form-control" %>
+		<%= f.text_area :descripcion, class: "form-control", :required => true %>
 	</div>
 	<%= f.submit "Crear", class: "btn btn-success"%>
 	
