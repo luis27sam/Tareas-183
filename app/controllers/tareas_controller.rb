@@ -1,4 +1,6 @@
 class TareasController < ApplicationController
+  before_action :set_tarea, except: [:index,:new,:create]
+
   def index
   	@tareas = Tarea.all
   end
@@ -8,37 +10,50 @@ class TareasController < ApplicationController
   end
 
   def create
-  	@tarea = Tarea.new(titulo: params[:tarea][:titulo], descripcion: params[:tarea][:descripcion])
+  	@tarea = Tarea.new(tarea_params)
+    #(titulo: params[:tarea][:titulo], descripcion: params[:tarea][:descripcion])
   	if @tarea.save
-  	redirect_to controller: 'tareas', action: 'show', id: @tarea.id 
+    redirect_to @tarea
+  	#redirect_to controller: 'tareas', action: 'show', id: @tarea.id 
     else render :new
   	end
   end
 
   def show
-  	@tarea = Tarea.find(params[:id])
+  	#@tarea = Tarea.find(params[:id])
   	#insert into tareas (titulo,descripcion) VALUES (FORMULARIO)
   end
 
   def destroy
-    @tarea = Tarea.find(params[:id])
+    #@tarea = Tarea.find(params[:id])
     @tarea.destroy
-    redirect_to controllers: "tareas",action: "index"
+    redirect_to tareas_paths
+    #redirect_to controllers: "tareas",action: "index"
   end
 
   def edit
-    @tarea = Tarea.find(params[:id])
+    #@tarea = Tarea.find(params[:id])
   end
 
   def update
-    @tarea = Tarea.find(params[:id])
-    if @tarea.update(titulo: params[:tarea][:titulo], descripcion: params[:tarea][:descripcion])
-    redirect_to controller: "tareas", action:"show",id: @tarea.id
+    #@tarea = Tarea.find(params[:id])
+    if @tarea.update(tarea_params)
+    #(titulo: params[:tarea][:titulo], descripcion: params[:tarea][:descripcion])
+    redirect_to @tarea
+    #redirect_to controller: "tareas", action:"show",id: @tarea.id
     else 
       render :edit
-    end
-    
+      end
   end
+  private
+    def set_tarea
+      @tarea = Tarea.find(params[:id])
+    end
+
+    def tarea_params
+      params.require(:tarea).permit(:titulo,:descripcion)
+
+    end  
 
 
 end
