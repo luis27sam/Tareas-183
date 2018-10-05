@@ -30,5 +30,15 @@ class TareasController < ApplicationController
     @tarea = Tarea.find(params[:id])
   end
 
+  def update
+    @tarea = Tarea.find(params[:id])
+    if @tarea.update(titulo: params[:tarea][:titulo], descripcion: params[:tarea][:descripcion])
+    redirect_to controller: "tareas", action:"show",id: @tarea.id
+    else 
+      render :edit
+    end
+    
+  end
+
 
 end
