@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :usuarios
   resources :tareas
   #get 'tareas', to: 'tareas#index'
   #get 'tareas/new', to: 'tareas#new'

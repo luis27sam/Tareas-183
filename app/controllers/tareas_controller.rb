@@ -1,4 +1,5 @@
 class TareasController < ApplicationController
+  before_action :authenticate_usuario!, except: [:index,:show]
   before_action :set_tarea, except: [:index,:new,:create]
 
   def index
@@ -12,6 +13,7 @@ class TareasController < ApplicationController
   def create
   	@tarea = Tarea.new(tarea_params)
     #(titulo: params[:tarea][:titulo], descripcion: params[:tarea][:descripcion])
+    @tarea.usuario = current_usuario
   	if @tarea.save
     redirect_to @tarea
   	#redirect_to controller: 'tareas', action: 'show', id: @tarea.id 

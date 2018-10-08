@@ -9,3 +9,8 @@
 		</div>
 	</div>
 </div>
+<% unless @tarea.usuario.nil? %>
+<p>Escrito por: <%= @tarea.usuario.email %></p>	
+<% end %>
+
+
