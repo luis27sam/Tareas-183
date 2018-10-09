@@ -22,6 +22,7 @@ class TareasController < ApplicationController
   end
 
   def show
+    @comentario = Comentario.new
   	#@tarea = Tarea.find(params[:id])
   	#insert into tareas (titulo,descripcion) VALUES (FORMULARIO)
   end
